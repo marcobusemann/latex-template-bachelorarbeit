@@ -1,0 +1,21 @@
+\section{Seitenübergänge}
+\label{pt-main}
+
+Seitenübergänge sind ein grundlegender Bestandteil jeder mobilen Anwendung. Meist durch eine Nutzerinteraktion eingeleitet, wechselt die Anwendung zwischen zwei Seiten. Der Anwender erwartet, dass diese Übergänge schnell und vor allem flüssig durchgeführt werden. Animationen unterstützen dieses Empfinden. Die Konfiguration von Seiten und ihren Übergängen sowie das Wechseln zwischen den Seiten einer Anwendung wird als Routing bezeichnet. 
+\\\\
+Eine \gls{sp}-Anwendung enthält mindestens einen Bereich im \gls{html}-Dokument, dessen Inhalte sich bei einem Seitenübergang dynamisch ändert. In AngularJS sind diese Bereiche durch die Direktive \emph{ngView} und in Ionic durch die Direktive \emph{ionNavView} gekennzeichnet. Für Seitenübergänge setzt Ionic das Framework AngularUI Router\footnote{https://github.com/angular-ui/ui-router} ein. Das Framework erweitert den nativen Routing-Mechanismus von AngularJS und bildet eine Seite der Anwendung als Zustand in einem Zustandsgraphen ab. Jeder Zustand ist durch einen Namen gekennzeichnet und enthält Informationen wie den Controller oder das Template der Seite. Die möglichen Transitionen des Graphen ergeben sich durch Navigationsmöglichkeiten auf den jeweiligen Seiten. Durch spezielle Direktiven erfolgt bei einer Nutzerinteraktion der Übergang in einen neuen Zustand. Die Konfiguration der Zustände erfolgt in der Regel beim Anwendungsstart. Abbildung \ref{su-ionic-routing} zeigt eine typische Routing-Konfiguration.
+\begin{lstlisting}[language=JavaScript, caption={Seitenübergänge, Ionic Routing Konfiguration}\label{su-ionic-routing}]
+$urlRouterProvider.otherwise('/state1');
+
+$stateProvider
+	.state('state1', {
+		url: '/state1',
+		templateUrl: 'partials/state1.html',
+		controller: 'State1Ctrl'
+	});	
+\end{lstlisting}
+Um einen Seitenübergang durchzuführen, lädt AngularJS zunächst alle Informationen über den Zielzustand. Ist dort ein Template über die Eigenschaft \emph{templateUrl} angegeben, muss dies zunächst über die Netzwerkschnittstelle geladen werden. In AngularJS wird dazu der Service \emph{\$http} verwendet. Um zukünftige Aufrufe einer Seite zu beschleunigen, wird dieses Template nach dem Laden in einem Cache zwischengespeichert (\emph{\$templateCache}). Im Anschluss werden alle Abhängigkeiten des Zielzustandes geladen (Methode \emph{resolve()}), der Controller erstellt, das Template kompiliert und anschließend in den \gls{dom} eingefügt. Standardmäßig findet zu diesem Zeitpunkt zusätzlich eine Animation statt.   
+\\\\
+Die Performance eines Seitenübergangs hängt auf Basis dieser Vorgehensweise von konkreten Faktoren ab. Zunächst beeinflusst das Laden des Templates die Geschwindigkeit. Bei lokalen Dateien ist dieser Faktor zwar nicht so groß wie bei Dateien, die über das Netzwerk geladen werden müssen, dennoch beeinflusst es den Seitenübergang. Der nächste Faktor ist das Auflösen von Abhängigkeiten eines Zustandes über die Methode \emph{resolve()}. Der Seitenwechsel wird erst vollständig durchgeführt, sobald alle Abhängigkeiten aufgelöst sind. Je mehr Logik in diesem Bereich untergebracht ist, desto mehr beeinflusst es die Performance. Konkret wird dieses Verfahren in Abschnitt \ref{dd-router-resolve} beschrieben. Ein weiterer Faktor ist das Erstellen des Controllers. Je mehr Code beim Erstellen eines Controllers ausgeführt wird, desto länger dauert die JavaScript Ausführung. Lange Algorithmen sollten vermieden oder bei Bedarf asynchron durchgeführt werden. Der letzte Faktor ist die Komplexität des Templates. Je komplexer dieses Template ist, desto aufwändiger ist das Kompilieren durch AngularJS und das Einfügen in den \gls{dom}. Seitenübergänge können auf Basis dieser Erkenntnisse auf unterschiedliche Arten optimiert werden. In den folgenden Abschnitten werden dazu geeignete Methoden vorgestellt.
+
+

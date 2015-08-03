@@ -1,0 +1,170 @@
+% DOM
+\newglossaryentry{domg}{
+	name={DOM},
+	description={"The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents. The document can be further processed and the results of that processing can be incorporated back into the presented page. This is an overview of DOM-related materials here at W3C and around the web."\cite{W3C-DOM}}}
+
+\newglossaryentry{dom}{
+	type=\acronymtype, 
+	name={DOM}, 
+	description={Document Object Model}, first={Document Object Model (DOM)\glsadd{domg}}, see=[Glossar:]{domg}}
+
+% CSSOM
+\newglossaryentry{cssomg}{
+	name={CSSOM},
+	description={"CSSOM defines APIs (including generic parsing and serialization rules) for Media Queries, Selectors, and of course CSS itself."\cite{W3C-CSSOM}}}
+
+\newglossaryentry{cssom}{
+	type=\acronymtype, 
+	name={CSSOM}, 
+	description={CSS Object Model}, first={CSS Object Model (CSSOM)\glsadd{cssomg}}, see=[Glossar:]{cssomg}}
+
+% XHR
+\newglossaryentry{xhrg}{
+	name={XHR},
+	description={"The XMLHttpRequest specification defines an API that provides scripted client functionality for transferring data between a client and a server."\cite{W3C-XHR}}}
+
+\newglossaryentry{xhr}{
+	type=\acronymtype, 
+	name={XHR}, 
+	description={XMLHttpRequest}, first={XMLHttpRequest (XHR)\glsadd{xhrg}}, see=[Glossar:]{xhrg}}
+
+% XHR
+\newglossaryentry{spag}{
+	name={SPA},
+	description={Der Begriff Single-Page Application bezeichnet eine Webanwendung, die physikalisch nur aus einer HTML-Datei besteht und dessen Inhalt sich zur Laufzeit dynamisch ändert.}}
+
+\newglossaryentry{spa}{
+	type=\acronymtype, 
+	name={SPA}, 
+	description={Single Page Application}, first={Single Page Application (SPA)\glsadd{spag}}, see=[Glossar:]{spag}}
+
+% Reflow
+\newglossaryentry{Reflow}
+{
+	name=Reflow,
+	description={Der Begriff \glqq Reflow \grqq{} bezeichnet einen Prozess der Browser-Engine, der die Positionen und Größen von Elementen im Dokument neu berechnet. Dies findet statt, wenn das gesamte Dokument oder Teile daraus neu gezeichnet werden müssen.}
+}
+
+% GC
+\newglossaryentry{gcg}{
+	name={GC},
+	description={Der Garbage Collector ist in speicherverwalteten Sprachen für das Freigegeben von nicht mehr verwendeten Speicherbereichen zuständig.}}
+
+\newglossaryentry{gc}{
+	type=\acronymtype, 
+	name={GC}, 
+	description={Garbage Collector}, first={Garbage Collector (GC)\glsadd{gcg}}, see=[Glossar:]{gcg}}
+
+% Local-Storage
+\newglossaryentry{LocalStorage}
+{
+	name=Local Storage,
+	description={Mittels Local Storage und Session Storage können JavaScript Anwendungen Daten persistent oder für die Laufzeit einer Session speichern. Die Größe des verfügbaren Speichers ist je nach Browser unterschiedlich, beträgt jedoch mindestens 5mb.\cite[S. 589ff.]{Flanagan2011}}
+}
+
+% FPS
+\newacronym{fps}{FPS}{Frames Per Second}
+
+% CSS
+\newacronym{css}{CSS}{Cascading Style Sheets}
+
+% UI
+\newacronym{ui}{UI}{User Interface}
+
+% HTML
+\newacronym{html}{HTML}{Hypertext Markup Language}
+
+% WebView
+\newglossaryentry{WebView}
+{
+	name=WebView,
+	description={Ein WebView ist eine UI Komponente, die Webseiten wie in einem Browser darstellen und JavaScript ausführen kann.}
+}
+
+% API
+\newacronym{api}{API}{Application Programming Interface}
+
+% SP
+\newacronym{sp}{SP}{Single Page}
+
+% MVC
+\newacronym{mvc}{MVC}{Model View Controller}
+
+% IS
+\newacronym{is}{IS}{Infinite Scrolling}
+
+% VS
+\newacronym{vs}{VS}{Virtual Scrolling}
+
+% Markup
+\newglossaryentry{Markup}
+{
+	name=Markup,
+	description={Der Begriff Markup beschreibt eine Sprache, die zur Gliederung und Formatierung von Texten oder anderen Daten eingesetzt wird und maschinell gelesen werden kann.}
+}
+
+% DI
+\newglossaryentry{dig}{
+	name={DI},
+	description={\glqq Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies. \grqq{}\cite{AJSDI}}}
+
+\newglossaryentry{di}{
+	type=\acronymtype, 
+	name={DI}, 
+	description={Dependency Injection}, first={Dependency Injection (DI)\glsadd{dig}}, see=[Glossar:]{dig}}
+
+% Page-Reloads
+\newglossaryentry{PageReloads}
+{
+	name=Page-Reloads,
+	description={Herkömmliche Webseiten rufen bei Änderungen die komplette Seite neu auf, anstatt nur den betroffenen Bereich zu aktualisieren.}
+}
+
+% Promise
+\newglossaryentry{Promise}
+{
+	name=Promise,
+	description={Promise bezeichnet ein Pattern, um Ergebnisse eine asynchronen Vorgangs abzufragen.}
+}
+
+% Routing
+\newglossaryentry{Routing}
+{
+	name=Routing,
+	description={Der Begriff Routing bezeichnet die Navigationshierarchie einer Anwendung. }
+}
+
+% Angularjs Expression
+\newglossaryentry{AJSExpression}
+{
+	name=Expression,
+	description={Durch AngularJS Expressions lassen sich Daten aus einem Model in das \gls{Template} einer View einfügen. Standardmäßig findet dabei automatisch eine Verknüpfung mit dem Model über ein Two-Way Databinding statt. AngularJS ersetzt die Expressions dabei in seinem Kompilier-Prozess durch konkrete Werte.}
+}
+
+% DOM-Listener
+\newglossaryentry{DOMListener}
+{
+	name=DOM-Listener,
+	description={Durch DOM-Listener kann auf Events im DOM reagiert werden. Dies beinhaltet Klick-Events und sonstige Interaktionen des Anwenders mit der Anwendung.}
+}
+
+\newglossaryentry{Pipes}
+{
+	name=Unix Pipes,
+	description={"A pipe is an area in the kernel memory (a kernel buffer) that allows two
+		processes, which are running on the same computer system and related to
+		each other, to communicate with each other, for example, one produces data
+		and the other consumes data." \cite[S. 158ff.]{Liu2011}}
+}
+
+\newglossaryentry{Template}
+{
+	name=Template,
+	description={Der Begriff Template beschreibt in dieser Arbeit einen HTML-Ausschnitt, der an unterschiedlichen Stellen in einer Anwendung eingebunden werden kann. Das Template umfasst dabei meist Bereiche, in denen AngularJS Expressions verwendet werden, um das Template beim Einfügen in die Anwendung mit Inhalt zu füllen.}
+}
+
+\newglossaryentry{View}
+{
+	name=View,
+	description={Der Begriff View beschreibt eine Anwendungskomponente, die dem Anwender Inhalte präsentiert. Die View kann durch unterschiedliche Technologien implementiert werden. In dieser Arbeit werden Views mit einem HTML-Markup  beschrieben.}
+}

@@ -1,0 +1,189 @@
+% toc=listofnumbered, sorgt dafür, dass unter anderem die Abbildungsverzeichnisse im 
+%                     Inhaltsverzeichnis mit aufgenommen wird.
+\documentclass[bibtotoc,toc=listofnumbered,BCOR12mm,DIV11,titlepage,a4paper,oneside]{scrbook}
+
+% Zeilenabstand
+\usepackage{setspace}
+
+%
+\usepackage{etoolbox}
+
+% Language packages
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[babel, german=quotes]{csquotes}
+
+% Bilder einbinden
+\usepackage{graphicx}
+
+% Abkürzungsverzeichnis
+\usepackage[printonlyused, footnote]{acronym}
+
+% Literaturverzeichnis
+\usepackage{biblatex}
+\bibliography{Sonstiges/Literatur}
+
+% PDF-Informationen und Hyperlinks
+\usepackage[pdftex,plainpages=false,pdfpagelabels,
+            pdftitle={Bachelorarbeit},
+            pdfauthor={Marco Busemann}
+            ]{hyperref}
+
+% Glossar
+\usepackage[section,nopostdot,acronym]{glossaries}
+
+% Beschreibung beim ersten auftauchen in die Fusszeile schreiben
+\defglsdisplayfirst[main]{\Glsentryname{\glslabel}\footnote{\Glsentrydesc{\glslabel}}}
+\defglsdisplayfirst[acronym]{
+	\Glsentryfirst{\glslabel}
+	\ifglshaslong{\glslabel g} % stellt sicher, dass acronyme ohne glossar keine fußzeile haben.
+		{}
+		{\footnote{\Glsentrydesc{\glslabel g}}}}
+\makeglossaries
+
+% Generell information
+\author{Marco Busemann}
+\title{Bachelorarbeit}
+
+% Header konfigurieren
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\renewcommand*{\headrulewidth}{0.4pt} 
+\lhead{} %Kopfzeile links
+\chead{} %Kopfzeile mitte
+\rhead{\thepage} %Kopfzeile rechts
+\lfoot{} %Fusszeile links
+\cfoot{} %Fusszeile mitte
+\rfoot{} %Fusszeile rechts
+\renewcommand*{\indexpagestyle}{fancy}
+\renewcommand*{\partpagestyle}{empty}
+\renewcommand*{\chapterpagestyle}{fancy}
+
+% Sonstiges
+\usepackage{array}
+
+% JavaScript listings
+%\usepackage{xcolor}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage{listings}
+
+% Überschriften für Listings
+%\DeclareCaptionFont{white}{ \color{white} }
+%\DeclareCaptionFormat{listing}{
+%	\colorbox[cmyk]{0.43, 0.35, 0.35,0.01 }{
+%		\parbox{\textwidth}{\hspace{15pt}#1#2#3}
+%	}
+%}
+%\captionsetup[lstlisting]{ format=listing, labelfont=white, textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize} }
+%\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in }
+
+% JavaScript Listing definieren
+\lstdefinelanguage{JavaScript} {
+	morekeywords={
+		break,const,continue,delete,do,while,export,for,in,function,
+		if,else,import,in,instanceOf,label,let,new,return,switch,this,
+		throw,try,catch,typeof,var,void,with,yield
+	},
+	sensitive=false,
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[d]'
+}
+
+% Formatieren
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	frame=top,frame=bottom,
+	basicstyle=\footnotesize\ttfamily,    % the size of the fonts that are used for the code
+	stepnumber=1,                           % the step between two line-numbers. If it is 1 each line will be numbered
+	numbersep=10pt,                         % how far the line-numbers are from the code
+	tabsize=2,                              % tab size in blank spaces
+	extendedchars=true,                     %
+	breaklines=true,                        % sets automatic line breaking
+	captionpos=t,                           % sets the caption-position to top
+	mathescape=true,
+	stringstyle=\color{white}\ttfamily, % Farbe der String
+	showspaces=false,           % Leerzeichen anzeigen ?
+	showtabs=false,             % Tabs anzeigen ?
+	xleftmargin=17pt,
+	framexleftmargin=17pt,
+	framexrightmargin=0pt,
+	framexbottommargin=5pt,
+	framextopmargin=5pt,
+	showstringspaces=false      % Leerzeichen in Strings anzeigen ?
+	backgroundcolor=\color{white},
+	commentstyle=\color{mygreen},    % comment style
+	keywordstyle=\color{blue},       % keyword style
+	language=JavaScript,                 % the language of the code
+	rulecolor=\color{black},
+	stringstyle=\color{mymauve},     % string literal style
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	mathescape=false
+}
+
+% Zusätzliche Schlüsselworte für HTML-Listing definieren. 
+% Bei der Verwendung mit der style eingebunden werden.
+\lstdefinestyle{ionicHtmlStyle}{
+	alsoletter={-},
+	morekeywords={
+		ng-repeat,
+		ion-list,
+		ion-item,
+		ng-include,
+		ng-src,
+		ng-class,
+		bo-src,
+		bo-class,
+		bo-text,
+		ion-infinite-scroll,
+		on-infinite,
+		distance,
+		ng-if,
+		placeholder,
+		ng-model
+	} 
+}
+
+\DeclareCaptionFormat{listing}{\rule{\dimexpr\textwidth+0pt\relax}{0.4pt}\par\vskip0pt#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt, font={sf},labelsep=space,labelfont=bf}
+
+% Listings unterstützen kein UTF-8 encoding. Daher wird hiermit gesagt, 
+% wie die meist verwendeten Zeichen interpretiert werden sollen.
+\lstset{literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+% Tabellen mit merged rows
+\usepackage{multirow}
+
+% TODO management
+\newcommand{\todo}[1]{\textcolor{red}{@TODO: #1}}
+
+% Tilde
+\newcommand{\mytilde}{{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}}
+
+% Nummerierung mit \subsubsection
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3} 
+
+%
+\usepackage{geometry}
+\geometry{left=40mm,top=30mm,right=30mm,bottom=30mm}

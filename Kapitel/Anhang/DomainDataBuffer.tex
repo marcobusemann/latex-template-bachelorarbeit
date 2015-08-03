@@ -1,0 +1,63 @@
+\mbchapter{Anhang 1 - Generischer Cache basierend auf Promises}
+\label{anhang1}
+\begin{lstlisting}[language=JavaScript]
+var app = angular.module('ba');
+
+function StdReject(deferred) {
+	return function (err) {
+		deferred.reject(err);
+	};
+}
+
+function StdResolve(deferred) {
+	return function (result) {
+		deferred.resolve(result);
+	}
+}
+
+function Item(value, promise) {
+	return {
+		value: value ? value : null,
+		promise: promise ? promise : null
+	}
+}
+
+app.factory('CacheService', ['$q', '$timeout', function ($q, $timeout) {
+	var data = {};
+	
+	return {
+		read: function (key) {
+			var deferred = $q.defer();
+			
+			if (data[key] && data[key].promise) {
+				data[key].promise.then(StdResolve(deferred), StdReject(deferred));
+				return deferred.promise;
+			}
+		
+			$timeout(function () {
+				if (data[key].value)
+					deferred.resolve(data[key].value);
+				else
+					deferred.reject(null);
+			}, 0);
+		
+			return deferred.promise;
+		},
+		
+		cacheValue: function (key, value) {
+			data[key] = Item(value);
+		},
+		
+		cachePromise: function (key, promise) {
+			var deferred = $q.defer();
+			
+			promise.then(function (result) {
+				data[key] = Item(result);
+				deferred.resolve(result);
+			}, StdReject(deferred));
+			
+			data[key] = Item(null, deferred.promise);
+		}
+	}
+}]);
+\end{lstlisting}
