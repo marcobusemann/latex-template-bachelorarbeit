@@ -1,0 +1,29 @@
+\mbchapter{Kapitel}
+\begin{quote}
+"Performance is the degree to which a software system or component meets its objectives for timeliness“. 
+\end{quote}
+
+\section{Abschnitt1}
+\label{abschnitt1}
+
+\section{Abschnitt2}
+\label{abschnitt2}
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=0.8]{Bilder/Browser-Layout.png}
+%	\caption{Schichten eines Browsers \cite{hbw}}
+%	\label{hbw-ebenen}
+%\end{figure}
+
+\begin{lstlisting}[caption={BenchmarkJS}\label{BenchmarkJS}]
+var bench = new Benchmark('', {
+	'fn': function() {
+		// Test code
+	},
+	'onComplete': function() {
+		var meanInMs = this.stats.mean * 1000;
+	}
+});
+bench.run();
+\end{lstlisting}

@@ -1,0 +1,11 @@
+\section{Hauptteil Kapitel 3}
+\begin{lstlisting}[language=JavaScript, caption={Seitenübergänge, Ionic Routing Konfiguration}\label{su-ionic-routing}]
+$urlRouterProvider.otherwise('/state1');
+
+$stateProvider
+	.state('state1', {
+		url: '/state1',
+		templateUrl: 'partials/state1.html',
+		controller: 'State1Ctrl'
+	});	
+\end{lstlisting}
